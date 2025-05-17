@@ -117,18 +117,43 @@
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-20 bg-gray-100">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-extrabold text-center mb-12 text-indigo-600">Contact Me</h2>
-      <form class="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-xl space-y-6">
-        <input type="text" placeholder="Your Name" class="w-full border border-gray-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-300">
-        <input type="email" placeholder="Your Email" class="w-full border border-gray-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-300">
-        <textarea placeholder="Your Message" rows="4" class="w-full border border-gray-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-300"></textarea>
-        <button type="submit" class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold hover:bg-indigo-700">Send Message</button>
-      </form>
-    </div>
-  </section>
+ <!-- Contact -->
+<section id="contact" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-extrabold text-center mb-12 text-indigo-600">Contact Me</h2>
+    <form 
+      action="https://formspree.io/f/xldbzabj" 
+      method="POST" 
+      class="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-xl space-y-6"
+    >
+      <input 
+        type="text" 
+        name="name" 
+        placeholder="Your Name" 
+        class="w-full border border-gray-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-300"
+      >
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Your Email" 
+        class="w-full border border-gray-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-300"
+      >
+      <textarea 
+        name="message" 
+        placeholder="Your Message" 
+        rows="4" 
+        class="w-full border border-gray-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-300"
+      ></textarea>
+      <button 
+        type="submit" 
+        class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold hover:bg-indigo-700"
+      >
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
 
   <!-- Footer -->
 <footer class="bg-white shadow-inner mt-10">
