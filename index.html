@@ -117,11 +117,12 @@
     </div>
   </section>
 
- <!-- Contact -->
+ <<!-- Contact -->
 <section id="contact" class="py-20 bg-gray-100">
   <div class="container mx-auto px-6">
     <h2 class="text-4xl font-extrabold text-center mb-12 text-indigo-600">Contact Me</h2>
     <form 
+      id="contact-form"
       action="https://formspree.io/f/xldbzabj" 
       method="POST" 
       class="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-xl space-y-6"
@@ -131,18 +132,21 @@
         name="name" 
         placeholder="Your Name" 
         class="w-full border border-gray-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-300"
+        required
       >
       <input 
         type="email" 
         name="email" 
         placeholder="Your Email" 
         class="w-full border border-gray-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-300"
+        required
       >
       <textarea 
         name="message" 
         placeholder="Your Message" 
         rows="4" 
         class="w-full border border-gray-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-300"
+        required
       ></textarea>
       <button 
         type="submit" 
@@ -151,8 +155,17 @@
         Send Message
       </button>
     </form>
+
+    <!-- Thank You Message -->
+    <div 
+      id="thank-you-message" 
+      class="max-w-2xl mx-auto mt-6 text-center text-green-600 font-semibold hidden"
+    >
+      Thank you! Your message has been sent.
+    </div>
   </div>
 </section>
+
 
 
   <!-- Footer -->
@@ -184,6 +197,63 @@
   <script>
     ScrollReveal().reveal('section', { delay: 200, distance: '50px', origin: 'bottom', duration: 1000 });
   </script>
+
+   <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('contact-form');
+    const thankYouMessage = document.getElementById('thank-you-message');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Perform client-side validation
+      const name = form.elements['name'].value.trim();
+      const email = form.elements['email'].value.trim();
+      const message = form.elements['message'].value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      // Simple email pattern check
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      // Submit the form via Fetch API
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Show thank-you message
+          thankYouMessage.classList.remove('hidden');
+
+          // Hide the message after 5 seconds
+          setTimeout(() => {
+            thankYouMessage.classList.add('hidden');
+          }, 5000);
+
+          // Reset the form
+          form.reset();
+        } else {
+          alert('There was a problem submitting the form.');
+        }
+      })
+      .catch(error => {
+        alert('There was a problem submitting the form.');
+      });
+    });
+  });
+</script>
+
 
 </body>
 </html>
